@@ -1,0 +1,22 @@
+node{
+    stage('clone the code'){
+        echo "Downloding the code"
+        git credentialsId: 'GITHUB_CREDS', url: 'https://github.com/amarsmart403/student_project.git'
+    }
+    stage('clean'){
+        echo "cleaning the code"
+        sh 'mvn clean'
+    }
+    stage('compile'){
+        echo "compiling the code"
+        sh 'mvn compile'
+    }
+    stage('package'){
+        echo "packaging the code"
+        sh 'mvn package'
+    }
+    stage('deploy'){
+        echo "Deploying the code in Nexus repo"
+        sh 'mvn deploy'
+    }
+}
